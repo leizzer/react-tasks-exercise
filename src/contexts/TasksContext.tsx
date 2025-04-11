@@ -1,17 +1,21 @@
-import React, { createContext, useContext, useState } from "react";
-import { Tasks } from "@/types/TaskTypes";
+import React, { createContext, useContext, useReducer } from "react";
+import { TasksReducer } from "@/reducers/TasksReducers";
 import type { TasksContext } from "@/types/TaskTypes";
 
 // TODO: It's better if I use an object so I can do O(1) operations
-const initialTasks: TasksContext = {tasks: []}
+const initialTasks: TasksContext = { tasks: [] };
 const TasksContext = createContext<TasksContext>(initialTasks);
 
-export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [tasks] = useState<Tasks>([
+export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [tasks, dispatch] = useReducer(TasksReducer, [
+    { id: 1, title: "Buy groceries", completed: false },
+    { id: 2, title: "Clean the house", completed: true },
   ]);
 
   return (
-    <TasksContext.Provider value={{ tasks }}>
+    <TasksContext.Provider value={{ tasks, dispatch }}>
       {children}
     </TasksContext.Provider>
   );
