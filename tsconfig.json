@@ -20,9 +20,13 @@
     "noEmit": true,
 
 
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@components/*": ["src/components/*"],
+      "@customTypes/*": ["src/types/*"],
+      "@reducers/*": ["src/reducers/*"]
     }
   },
   "include": [

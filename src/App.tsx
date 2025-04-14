@@ -1,6 +1,5 @@
-import React from "react";
-
 import TaskManager from "./components/TaskManager";
+import { TasksProvider } from "./contexts/TasksContext";
 
 function App() {
   return (
@@ -9,7 +8,9 @@ function App() {
         <h1 className="text-3xl font-bold">Task Manager</h1>
       </header>
 
-      <TaskManager />
+      <TasksProvider>
+        <TaskManager />
+      </TasksProvider>
     </div>
   );
 }

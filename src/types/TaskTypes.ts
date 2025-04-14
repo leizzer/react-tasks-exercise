@@ -4,14 +4,24 @@ export interface Task {
   completed: boolean;
 }
 
+export interface NewTask {
+  title: string;
+}
+
 export type Tasks = Task[];
 
 export type TasksContext = {
   tasks: Tasks;
-  dispatch?: React.Dispatch<TaskAction>;
+  dispatch: DispatchType
 };
+
+export type DispatchType = React.Dispatch<TaskAction | StorageAction>;
 
 export type TaskAction = {
   type: "ADD_TASK";
-  payload: Task;
+  payload: Task | NewTask;
 };
+
+export type StorageAction = {
+  type: "SYNC_TASKS";
+}

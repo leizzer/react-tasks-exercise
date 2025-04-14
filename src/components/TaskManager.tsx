@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
-import TaskItem from "./TaskItem";
+import TaskItem from "@components/TaskItem";
+import { useTasksContext } from "@contexts/TasksContext";
+import TaskForm from "./TaskForm";
 
 const TaskManager = () => {
-  const [tasks, setTasks] = useState<any[]>([
-    { id: 1, title: "Buy groceries", completed: false },
-    { id: 2, title: "Clean the house", completed: true },
-  ]);
+  const { tasks } = useTasksContext();
   const [filter, setFilter] = useState("all");
-  const [newTask, setNewTask] = useState<string>();
 
   // Intentional bug: The filter conditions are reversed.
   const filteredTasks = tasks.filter((task) => {
@@ -17,47 +15,18 @@ const TaskManager = () => {
     return true;
   });
 
-  const handleAddTask = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTask!.trim() === "") return;
-    const newTaskObj = {
-      id: tasks.length + 1,
-      name: newTask,
-      completed: false,
-    };
-    setTasks([...tasks, newTaskObj]);
-    setNewTask("");
-  };
-
   // Intentional bug: Directly mutating the tasks array when deleting.
   const handleDeleteTask = (id: number) => {
-    const index = tasks.findIndex((task) => task.id === id);
-    if (index !== -1) {
-      tasks.splice(index, 1);
-      setTasks(tasks);
-    }
+    // dispatch({ type: "DELETE_TASK", payload: id });
   };
 
   const toggleTaskCompletion = (id: number) => {
-    const task = tasks.find((task) => task.id === id);
-
-    task.isCompleted = !task.isCompleted;
+    // dispatch({ type: "TOGGLE_TASK", payload: id });
   };
 
   return (
     <div className="container mx-auto bg-white p-4 rounded shadow">
-      <form onSubmit={handleAddTask} className="mb-4 flex">
-        <input
-          type="text"
-          placeholder="New task..."
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          className="flex-grow border rounded-l py-2 px-3"
-        />
-        <button type="submit" className="bg-blue-500 text-white px-4 rounded-r">
-          Add
-        </button>
-      </form>
+      <TaskForm />
       <div className="flex justify-around mb-4">
         <button onClick={() => setFilter("all")} className="text-gray-700">
           All
@@ -73,7 +42,7 @@ const TaskManager = () => {
         </button>
       </div>
       <ul>
-        {filteredTasks.map((task) => (
+        {tasks.map((task) => (
           <TaskItem
             key={task.id}
             task={task}
