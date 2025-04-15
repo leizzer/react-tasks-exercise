@@ -7,7 +7,7 @@ import Filter from "@components/Filter";
 import { TasksFilters } from "@customTypes/taskTypes";
 import { filterTasks } from "@utilities/filterTasks";
 
-const TaskManager = () => {
+const TaskManager: React.FC = () => {
   const { tasks } = useTasksContext();
   const [filter, setFilter] = useState(TasksFilters.ALL);
 

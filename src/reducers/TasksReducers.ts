@@ -1,4 +1,4 @@
-import { Task, Tasks, TaskAction, StorageAction } from "@/types/taskTypes";
+import { Task, Tasks, TaskAction, StorageAction } from "@customTypes/taskTypes";
 
 export const initilizeStorage = (): Tasks => {
   let tasks = readTasksFromStorage();
