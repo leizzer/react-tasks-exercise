@@ -15,13 +15,10 @@ const TaskManager: React.FC = () => {
     <div className="container mx-auto bg-white p-4 rounded shadow">
       <TaskForm />
       <Filter onFilterSelected={setFilter} currentFilter={filter} />
-      
+
       <ul>
         {filterTasks(tasks, filter).map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-          />
+          <TaskItem key={task.id} task={task} />
         ))}
       </ul>
     </div>

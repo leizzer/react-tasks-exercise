@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useContext, useReducer } from "react";
-import { initilizeStorage, TasksReducer } from "@reducers/tasksReducers"
+import { initilizeStorage, TasksReducer } from "@reducers/tasksReducers";
 import type { TasksContext } from "@customTypes/taskTypes";
 
 const initialStorage = {
   tasks: initilizeStorage(),
-  dispatch: () => {throw new Error("Dispatch function not initialized")},
+  dispatch: () => {
+    throw new Error("Dispatch function not initialized");
+  },
 };
 
 const TasksContext = createContext<TasksContext>(initialStorage);
@@ -24,7 +26,7 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
     window.addEventListener("storage", handleStorageChange);
     return () => {
       window.removeEventListener("storage", handleStorageChange);
-    }
+    };
   }, []);
 
   return (

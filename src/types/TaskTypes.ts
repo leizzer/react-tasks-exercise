@@ -2,17 +2,17 @@ export type Task = {
   id: number;
   title: string;
   completed: boolean;
-}
+};
 
 export type NewTask = {
   title: string;
-}
+};
 
 export type Tasks = Task[];
 
 export type TasksContext = {
   tasks: Tasks;
-  dispatch: DispatchType
+  dispatch: DispatchType;
 };
 
 export type DispatchType = React.Dispatch<TaskAction | StorageAction>;
@@ -24,7 +24,7 @@ export type TaskAction = {
 
 export type StorageAction = {
   type: "SYNC_TASKS";
-}
+};
 
 export enum TasksFilters {
   ALL = "all",

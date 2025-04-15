@@ -2,14 +2,11 @@ import { Task, Tasks, TaskAction, StorageAction } from "@customTypes/taskTypes";
 
 export const initilizeStorage = (): Tasks => {
   let tasks = readTasksFromStorage();
-  
+
   if (!tasks) {
     tasks = [];
 
-    localStorage.setItem(
-      "tasks",
-      JSON.stringify(tasks)
-    );
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
   return tasks;
@@ -20,7 +17,10 @@ export const readTasksFromStorage = (): Tasks | null => {
   return localStorageTasks ? JSON.parse(localStorageTasks) : null;
 };
 
-export const TasksReducer = (state: Tasks, action: TaskAction | StorageAction): Tasks => {
+export const TasksReducer = (
+  state: Tasks,
+  action: TaskAction | StorageAction,
+): Tasks => {
   let newState: Tasks = [];
 
   switch (action.type) {
@@ -35,12 +35,14 @@ export const TasksReducer = (state: Tasks, action: TaskAction | StorageAction): 
           ...action.payload,
           completed: false,
           id: increaseId(state),
-        }
-      ]
+        },
+      ];
       break;
-    
+
     case "DELETE_TASK":
-      newState = state.filter((task) => task.id !== (action.payload as Task).id);
+      newState = state.filter(
+        (task) => task.id !== (action.payload as Task).id,
+      );
       break;
 
     case "TOGGLE_TASK":
@@ -51,7 +53,7 @@ export const TasksReducer = (state: Tasks, action: TaskAction | StorageAction): 
         return {
           ...t,
           completed: !t.completed,
-        }
+        };
       });
 
       break;
@@ -59,7 +61,7 @@ export const TasksReducer = (state: Tasks, action: TaskAction | StorageAction): 
     default:
       newState = state;
   }
-  
+
   if (action.type !== "SYNC_TASKS") {
     localStorage.setItem("tasks", JSON.stringify(newState));
   }
@@ -71,4 +73,4 @@ export const TasksReducer = (state: Tasks, action: TaskAction | StorageAction): 
 const increaseId = (tasks: Tasks) => {
   const lastTask = tasks[tasks.length - 1];
   return lastTask ? (lastTask.id ?? 0) + 1 : 1;
-}
+};

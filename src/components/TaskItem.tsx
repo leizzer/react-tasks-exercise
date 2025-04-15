@@ -1,23 +1,23 @@
 import React from "react";
-import { useTasksContext } from '@contexts/TasksContext';
+import { useTasksContext } from "@contexts/TasksContext";
 import type { Task } from "@customTypes/taskTypes";
 
 interface TaskProps {
   task: Task;
-};
+}
 
 const TaskItem: React.FC<TaskProps> = ({ task }) => {
   const { dispatch } = useTasksContext();
 
-  const handleDeleteTask = ( e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleDeleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch({
       type: "DELETE_TASK",
       payload: task,
-    }); 
+    });
   };
 
-  const handleToggleTask = ( e: React.MouseEvent<HTMLSpanElement>) => {
+  const handleToggleTask = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
     dispatch({
       type: "TOGGLE_TASK",
@@ -29,9 +29,8 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
     <li className="flex items-center justify-between border-b py-2">
       <span
         onClick={handleToggleTask}
-        className={`flex-grow cursor-pointer text-lg truncate ${
-          task.completed ? "line-through text-green-500" : "text-black"
-        }`}
+        className={`flex-grow cursor-pointer text-lg truncate ${task.completed ? "line-through text-green-500" : "text-black"
+          }`}
         title={task.title}
       >
         {task.title}
