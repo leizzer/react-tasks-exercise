@@ -1,7 +1,12 @@
-import { Task } from "@customTypes/taskTypes";
+import React from "react";
 import { useTasksContext } from '@contexts/TasksContext';
+import type { Task } from "@customTypes/taskTypes";
 
-const TaskItem = ({ task }: { task: Task }) => {
+interface TaskProps {
+  task: Task;
+};
+
+const TaskItem: React.FC<TaskProps> = ({ task }) => {
   const { dispatch } = useTasksContext();
 
   const handleDeleteTask = ( e: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,9 +29,10 @@ const TaskItem = ({ task }: { task: Task }) => {
     <li className="flex items-center justify-between border-b py-2">
       <span
         onClick={handleToggleTask}
-        className={`flex-grow cursor-pointer ${
+        className={`flex-grow cursor-pointer text-lg truncate ${
           task.completed ? "line-through text-green-500" : "text-black"
         }`}
+        title={task.title}
       >
         {task.title}
       </span>

@@ -16,13 +16,17 @@ const TaskForm: React.FC = () => {
         setTask('');
     };
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTask(e.target.value);
+    };
+
     return (
         <form onSubmit={handleSubmit} className="mb-4 flex">
             <input
                 type="text"
                 name="taskTitle"
                 value={task}
-                onChange={(e) => setTask(e.target.value)}
+                onChange={handleChange}
                 placeholder="New task..."
                 className="flex-grow border rounded-l py-2 px-3"
             />
