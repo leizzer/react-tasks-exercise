@@ -26,7 +26,8 @@
       "@contexts/*": ["src/contexts/*"],
       "@components/*": ["src/components/*"],
       "@customTypes/*": ["src/types/*"],
-      "@reducers/*": ["src/reducers/*"]
+      "@reducers/*": ["src/reducers/*"],
+      "@utilities/*": ["src/utilities/*"]
     }
   },
   "include": [

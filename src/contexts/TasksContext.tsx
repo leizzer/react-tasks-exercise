@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useContext, useReducer } from "react";
-import { initilizeStorage, TasksReducer } from "@reducers/TasksReducers";
-import type { TasksContext } from "@customTypes/TaskTypes";
+import { initilizeStorage, TasksReducer } from "@reducers/tasksReducers";
+import type { TasksContext } from "@customTypes/taskTypes";
 
 const initialStorage = {
   tasks: initilizeStorage(),

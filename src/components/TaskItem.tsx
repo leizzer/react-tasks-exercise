@@ -1,4 +1,4 @@
-import { Task } from "@/types/TaskTypes";
+import { Task } from "@customTypes/taskTypes";
 import { useTasksContext } from '@contexts/TasksContext';
 
 const TaskItem = ({ task }: { task: Task }) => {
@@ -25,7 +25,7 @@ const TaskItem = ({ task }: { task: Task }) => {
       <span
         onClick={handleToggleTask}
         className={`flex-grow cursor-pointer ${
-          task.completed ? "text-black" : "line-through text-green-500"
+          task.completed ? "line-through text-green-500" : "text-black"
         }`}
       >
         {task.title}
@@ -33,12 +33,7 @@ const TaskItem = ({ task }: { task: Task }) => {
 
       <button
         onClick={handleDeleteTask}
-        style={{
-          backgroundColor: "red",
-          color: "white",
-          padding: "4px 8px",
-          borderRadius: "4px",
-        }}
+        className="bg-red-500 text-white px-2 py-1 rounded"
       >
         Delete
       </button>

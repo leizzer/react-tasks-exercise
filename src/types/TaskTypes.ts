@@ -1,10 +1,10 @@
-export interface Task {
+export type Task = {
   id: number;
   title: string;
   completed: boolean;
 }
 
-export interface NewTask {
+export type NewTask = {
   title: string;
 }
 
@@ -24,4 +24,10 @@ export type TaskAction = {
 
 export type StorageAction = {
   type: "SYNC_TASKS";
+}
+
+export enum TasksFilters {
+  ALL = "all",
+  COMPLETED = "completed",
+  PENDING = "pending",
 }

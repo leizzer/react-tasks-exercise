@@ -10,6 +10,7 @@ export default defineConfig({
       '@contexts': path.resolve(__dirname, 'src/contexts'),
       '@customTypes': path.resolve(__dirname, 'src/types'),
       '@reducers': path.resolve(__dirname, 'src/reducers'),
+      '@utilities': path.resolve(__dirname, 'src/utilities'),
     }
   }
 });
