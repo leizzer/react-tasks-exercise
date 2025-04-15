@@ -18,7 +18,7 @@ export type TasksContext = {
 export type DispatchType = React.Dispatch<TaskAction | StorageAction>;
 
 export type TaskAction = {
-  type: "ADD_TASK";
+  type: "ADD_TASK" | "DELETE_TASK" | "TOGGLE_TASK";
   payload: Task | NewTask;
 };
 

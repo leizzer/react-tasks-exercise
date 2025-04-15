@@ -5,7 +5,7 @@ import { useTasksContext } from "@contexts/TasksContext";
 import TaskForm from "./TaskForm";
 
 const TaskManager = () => {
-  const { tasks } = useTasksContext();
+  const { tasks, dispatch } = useTasksContext();
   const [filter, setFilter] = useState("all");
 
   // Intentional bug: The filter conditions are reversed.
@@ -14,15 +14,6 @@ const TaskManager = () => {
     if (filter === "pending") return task.completed === true;
     return true;
   });
-
-  // Intentional bug: Directly mutating the tasks array when deleting.
-  const handleDeleteTask = (id: number) => {
-    // dispatch({ type: "DELETE_TASK", payload: id });
-  };
-
-  const toggleTaskCompletion = (id: number) => {
-    // dispatch({ type: "TOGGLE_TASK", payload: id });
-  };
 
   return (
     <div className="container mx-auto bg-white p-4 rounded shadow">
@@ -46,8 +37,6 @@ const TaskManager = () => {
           <TaskItem
             key={task.id}
             task={task}
-            onDelete={handleDeleteTask}
-            onToggle={toggleTaskCompletion}
           />
         ))}
       </ul>

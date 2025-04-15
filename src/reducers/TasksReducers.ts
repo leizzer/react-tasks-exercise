@@ -1,4 +1,4 @@
-import { Tasks, TaskAction, StorageAction } from "@/types/TaskTypes";
+import { Task, Tasks, TaskAction, StorageAction } from "@/types/TaskTypes";
 
 export const initilizeStorage = (): Tasks => {
   let tasks = readTasksFromStorage();
@@ -37,6 +37,23 @@ export const TasksReducer = (state: Tasks, action: TaskAction | StorageAction): 
           id: increaseId(state),
         }
       ]
+      break;
+    
+    case "DELETE_TASK":
+      newState = state.filter((task) => task.id !== (action.payload as Task).id);
+      break;
+
+    case "TOGGLE_TASK":
+      const task = action.payload as Task;
+
+      newState = state.map((t) => {
+        if (t.id !== task.id) return t;
+        return {
+          ...t,
+          completed: !t.completed,
+        }
+      });
+
       break;
 
     default:
