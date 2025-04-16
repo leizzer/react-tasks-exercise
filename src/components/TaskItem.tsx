@@ -11,6 +11,10 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
 
   const handleDeleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    const confirmed = window.confirm(`Delete task? \n "${task.title}"?`);
+    if (!confirmed) return;
+
     dispatch({
       type: "DELETE_TASK",
       payload: task,
@@ -29,8 +33,7 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
     <li className="flex items-center justify-between border-b py-2">
       <span
         onClick={handleToggleTask}
-        className={`flex-grow cursor-pointer text-lg truncate ${task.completed ? "line-through text-green-500" : "text-black"
-          }`}
+        className={`flex-grow cursor-pointer text-lg truncate ${task.completed ? "line-through text-green-500" : "text-black" }`}
         title={task.title}
       >
         {task.title}
