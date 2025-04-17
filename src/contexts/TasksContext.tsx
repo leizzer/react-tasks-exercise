@@ -1,15 +1,13 @@
-import React, { createContext, useEffect, useContext, useReducer } from "react";
-import { initilizeStorage, TasksReducer } from "@reducers/tasksReducers";
-import type { TasksContext } from "@customTypes/taskTypes";
+import React, { createContext, useEffect, useReducer } from "react";
+import { initialStorage, TasksReducer } from "@reducers/tasksReducers";
+import type { Tasks, DispatchType } from "@customTypes/taskTypes";
 
-const initialStorage = {
-  tasks: initilizeStorage(),
-  dispatch: () => {
-    throw new Error("Dispatch function not initialized");
-  },
+type TasksContextType = {
+  tasks: Tasks;
+  dispatch: DispatchType;
 };
 
-const TasksContext = createContext<TasksContext>(initialStorage);
+export const TasksContext = createContext<TasksContextType>(initialStorage);
 
 export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -34,13 +32,4 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </TasksContext.Provider>
   );
-};
-
-export const useTasksContext = () => {
-  const context = useContext(TasksContext);
-
-  if (!context) {
-    throw new Error("useTaskContext must be used within a TaskProvider");
-  }
-  return context;
 };

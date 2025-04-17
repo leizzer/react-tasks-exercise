@@ -1,5 +1,5 @@
 import React from "react";
-import { useTasksContext } from "@contexts/TasksContext";
+import useTasksContext from "@hooks/useTasksContext";
 import type { Task } from "@customTypes/taskTypes";
 
 interface TaskProps {

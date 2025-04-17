@@ -24,8 +24,13 @@
       "@components/*": ["./src/components/*"],
       "@customTypes/*": ["./src/types/*"],
       "@reducers/*": ["./src/reducers/*"],
-      "@utilities/*": ["./src/utilities/*"]
-    }
+      "@utilities/*": ["./src/utilities/*"],
+      "@hooks/*": ["./src/hooks/*"]
+    },
+    "types": ["vitest", "vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "src/test"
+  ]
 }

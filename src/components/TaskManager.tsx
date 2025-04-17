@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import TaskItem from "@components/TaskItem";
-import { useTasksContext } from "@contexts/TasksContext";
+import useTasksContext from "@hooks/useTasksContext";
 import TaskForm from "@components/TaskForm";
 import Filter from "@components/Filter";
 import { TasksFilters } from "@customTypes/taskTypes";

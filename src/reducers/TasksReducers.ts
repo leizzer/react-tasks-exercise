@@ -17,6 +17,11 @@ export const readTasksFromStorage = (): Tasks | null => {
   return localStorageTasks ? JSON.parse(localStorageTasks) : null;
 };
 
+export const initialStorage = {
+  tasks: initilizeStorage(),
+  dispatch: () => {},
+};
+
 export const TasksReducer = (
   state: Tasks,
   action: TaskAction | StorageAction,

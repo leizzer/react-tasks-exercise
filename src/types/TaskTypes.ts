@@ -10,11 +10,6 @@ export type NewTask = {
 
 export type Tasks = Task[];
 
-export type TasksContext = {
-  tasks: Tasks;
-  dispatch: DispatchType;
-};
-
 export type DispatchType = React.Dispatch<TaskAction | StorageAction>;
 
 export type TaskAction = {

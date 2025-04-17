@@ -1,7 +1,8 @@
+import React from "react";
 import TaskManager from "./components/TaskManager";
 import { TasksProvider } from "./contexts/TasksContext";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <header className="text-center mb-4">
